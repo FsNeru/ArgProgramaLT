@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { FooterComponent } from './footer/footer/footer.component';
+import { BannerComponent } from './banner/banner.component';
+import { AcercaDeComponent } from './acerca-de/acerca-de.component';
+import { ExperienciaComponent } from './experiencia/experiencia.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BannerComponent,
+    AcercaDeComponent,
+    ExperienciaComponent
   ],
   imports: [
     BrowserModule,
