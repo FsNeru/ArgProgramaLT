@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './frontpage/navbar/navbar.component';
-import { FooterComponent } from './frontpage/footer/footer.component';
+import { NavbarComponent } from './header/navbar/navbar.component';
+import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
   declarations: [
