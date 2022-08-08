@@ -1,0 +1,9 @@
+<div class="card">
+  <h1>Habilidades</h1>
+  <div *ngFor="let skill of skills">
+    <h5>{{skill.nombreSkill}}</h5>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" [ngStyle]="{'width': skill.valor + '%'}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{skill.valor}}%</div>
+    </div>
+  </div>
+</div>

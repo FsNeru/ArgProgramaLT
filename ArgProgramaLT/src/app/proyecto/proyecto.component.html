@@ -1,0 +1,13 @@
+<div class="card">
+  <h1>Proyectos</h1>
+  <div class="card my-2" id="proyectos" *ngFor="let proyecto of proyectos">
+    <div class="card-body">
+      <h3 class="card-title">{{proyecto.tituloProyecto}}</h3>
+      <div class="card-text">
+        <p class="mb-2">{{proyecto.descripcionProyecto}}</p>
+        <p class="mb-2">{{proyecto.urlProyecto}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

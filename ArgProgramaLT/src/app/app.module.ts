@@ -5,25 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { FooterComponent } from './footer/footer/footer.component';
-import { BannerComponent } from './banner/banner.component';
-import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 import { ExperienciaComponent } from './experiencia/experiencia.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { EducacionComponent } from './educacion/educacion.component';
+import { SkillComponent } from './skill/skill.component';
+import { ProyectoComponent } from './proyecto/proyecto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    BannerComponent,
-    AcercaDeComponent,
     ExperienciaComponent,
     LoginComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    EducacionComponent,
+    SkillComponent,
+    ProyectoComponent
   ],
   imports: [
     BrowserModule,

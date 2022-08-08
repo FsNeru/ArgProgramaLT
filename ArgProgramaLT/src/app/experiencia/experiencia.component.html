@@ -1,9 +1,13 @@
-<div class="card my-2" id="experiencia">
-  <div class="card-body">
-    <h3 class="card-title">Experiencia</h3>
-    <div class="card-text">
-    <p class="mb-2">Puesto</p>
-    <p class="mb-2">Empresa</p>
-    <p class="mb-2">Tiempo Trabajado</p>
+<div class="card">
+  <h1>Experiencia</h1>
+  <div class="card my-2" id="experiencia" *ngFor="let experiencia of experiencias">
+    <div class="card-body">
+      <h3 class="card-title">{{experiencia.puesto}}</h3>
+      <div class="card-text">
+        <p class="mb-2">{{experiencia.nombreEmpresa}}</p>
+        <p class="mb-2">{{experiencia.tipoEmpleo}}</p>
+        <p class="mb-2">{{experiencia.fechaInicio}} - {{experiencia.fechaFin}}</p>
+      </div>
+    </div>
   </div>
 </div>

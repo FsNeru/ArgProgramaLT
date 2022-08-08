@@ -1,0 +1,55 @@
+<div class="card">
+  <h1>Educacion</h1>
+  <div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEducacionModal" (click)="onOpenModal('add')">Add</button>
+  </div>
+<!------------------------------------------------ Modal Add Educacion ---------------------------------------------->
+  <div class="modal fade" id="addEducacionModal" tabindex="-1" aria-labelledby="addEducacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEducacionModalLabel">Añadir Educacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddEducacion(addForm)">
+            <div class="mb-3">
+              <label for="tituloEstudio" class="col-form-label">Titulo:</label>
+              <input type="text" ngModel class="form-control" id="tituloEstudio" name="tituloEstudio" placeholder="Titulo" required/>
+            </div>
+            <div class="mb-3">
+              <label for="institucionEstudio" class="col-form-label">Institucion:</label>
+              <input type="text" ngModel class="form-control"  id="institucionEstudio" name="institucionEstudio" placeholder="Institucion" required/>
+            </div>
+            <div class="mb-3">
+              <label for="fechaInicio" class="col-form-label">Fecha Inicio:</label>
+              <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Fecha Inicio" required/>
+            </div>
+            <div class="mb-3">
+              <label for="fechaFin" class="col-form-label">Fecha Fin:</label>
+              <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control" id="fechaFin" name="fechaFin" required/>
+            </div>
+
+          <div class="modal-footer">
+            <button [disabled]="addForm.invalid"  type="submit" class="btn btn-primary">Guardar cambios</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!------------------------------------------------ Fin Modal ---------------------------------------------->
+  <div class="card my-2" id="educacion" *ngFor="let educacion of educaciones">
+    <div class="card-body">
+      <h3 class="card-title">{{educacion.tituloEstudio}}</h3>
+      <div class="card-text">
+        <p class="mb-2">{{educacion.institucionEstudio}}</p>
+        <p class="mb-2">Desde {{educacion.fechaInicio}} hasta {{educacion.fechaFin}}</p>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#educacionModal" (click)="onOpenModal('edit',educacion)">Edit</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#educacionModal" (click)="onOpenModal('delete',educacion)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
