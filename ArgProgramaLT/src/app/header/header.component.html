@@ -9,12 +9,19 @@
           <p id="profecion">{{usuario.profesionUsuario}}</p>
           <p id="ubicacion">{{usuario.domicilioUsuario}}</p>
         </div>
-    </div>
-    <div id="editButtons">
-      
+        <div class="col text-center">
+          <a
+            (click)="onClickUpdate(usuario)"
+            href="#updateUsuarioModal"
+            class="btn btn-primary tooltips"
+            data-placement="top"
+            data-bs-toggle="modal"
+            data-original-title="Edit">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
     </div>
   </div>
-
   <div class="card my-2" id="acercaDe">
     <div class="card-body">
       <h3 class="card-title">Acerca de mi</h3>
@@ -22,4 +29,49 @@
     </div>
   </div>
 </div>
-
+<!--------------------------------------- Modal Update Info Usuario ------------------------------------->
+<div class="modal fade" id="updateUsuarioModal" tabindex="-1" aria-labelledby="updateUsuarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateUsuarioModalLabel">Editar datos usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm">
+          <div class="mb-3">
+            <label for="id" class="col-form-label">ID:</label>
+            <input type="text" ngModel="{{updateUsuario?.id}}" class="form-control" id="id" name="id" placeholder="idUsuario" readonly/>
+          </div>
+          <div class="mb-3">
+            <label for="nombreUsuario" class="col-form-label">Nombre:</label>
+            <input type="text" ngModel="{{updateUsuario?.nombreUsuario}}" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre"/>
+          </div>
+          <div class="mb-3">
+            <label for="apellidoUsuario" class="col-form-label">Apellido:</label>
+            <input type="text" ngModel="{{updateUsuario?.apellidoUsuario}}" class="form-control"  id="apellidoUsuario" name="apellidoUsuario" placeholder="Apellido"/>
+          </div>
+          <div class="mb-3">
+            <label for="profesionUsuario" class="col-form-label">Profesion:</label>
+            <input type="text" ngModel="{{updateUsuario?.profesionUsuario}}" class="form-control"  id="profesionUsuario" name="profesionUsuario" placeholder="Profesion"/>
+          </div>
+          <div class="mb-3">
+            <label for="domicilioUsuario" class="col-form-label">Domicilio:</label>
+            <input type="text" ngModel="{{updateUsuario?.domicilioUsuario}}" class="form-control"  id="domicilioUsuario" name="domicilioUsuario" placeholder="Domicilio"/>
+          </div>
+          <div class="mb-3">
+            <label for="sobreMiUsuario" class="col-form-label">Acerca de mi:</label>
+            <input type="text" ngModel="{{updateUsuario?.sobreMiUsuario}}" class="form-control"  id="sobreMiUsuario" name="sobreMiUsuario" placeholder="Cuenta algo sobre ti"/>
+          </div>
+          <div class="mb-3">
+            <label for="urlFotoUsuario" class="col-form-label">Url Foto Perfil:</label>
+            <input type="text" ngModel="{{updateUsuario?.urlFotoUsuario}}" class="form-control"  id="urlFotoUsuario" name="urlFotoUsuario" placeholder="Url Foto"/>
+          </div>
+          <div class="modal-footer">
+            <button (click)="onUpdateUsuario(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

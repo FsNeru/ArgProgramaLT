@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class EducacionComponent implements OnInit {
   public educaciones:Educacion[]=[];
-  public editEducaciones:Educacion | undefined;
+  public updateEducaciones:Educacion | undefined;
   public deleteEducaciones:Educacion | undefined;
 
   constructor(private educacionService:EducacionService) { }
@@ -29,24 +29,17 @@ export class EducacionComponent implements OnInit {
       }
     })
   }
-  public onOpenModal(mode:String, educacion?:Educacion):void{
-    const container=document.getElementById('main-container');
-    const button=document.createElement('button');
-    button.style.display='none';
-    button.setAttribute('data-toggle','modal');
-    if (mode === 'add'){
-      button.setAttribute('data-target','#addEducacionModal')
-    }
-    else if (mode === 'delete'){
-      this.deleteEducaciones=educacion;
-      button.setAttribute('data-target','#deleteEducacionModal')
-    }
-    else if (mode === 'edit'){
-      this.deleteEducaciones=educacion;
-      button.setAttribute('data-target','#editEducacionModal')
-    }
-    container?.appendChild(button);
-    button.click();
+  public onClickUpdate(educacion:Educacion):void{
+    this.updateEducaciones=educacion;
+    console.log("------------------On click update------------------")
+    console.log(this.updateEducaciones)
+    console.log("---------------------------------------------------")
+  }
+  public onClickDelete(educacion:Educacion):void{
+    this.deleteEducaciones=educacion;
+    console.log("------------------On click delete------------------")
+    console.log(this.deleteEducaciones)
+    console.log("---------------------------------------------------")
   }
 
   public onAddEducacion(addForm:NgForm):void{
@@ -65,7 +58,10 @@ export class EducacionComponent implements OnInit {
   }
 
   public onUpdateEducacion(educacion:Educacion):void{
-    this.editEducaciones=educacion;
+    this.updateEducaciones=educacion;
+    console.log("------------------Metodo on Update------------------")
+    console.log(educacion)
+    console.log("--------------------------------------------------------------")
     this.educacionService.updateEducacion(educacion).subscribe({
       next: (response: Educacion) =>{
         console.log(response);
@@ -73,8 +69,8 @@ export class EducacionComponent implements OnInit {
       },
       error:(error:HttpErrorResponse)=>{
         alert(error.message);
-      },
-    });
+      }
+    })
   }
 
   public onDeleteEducacion(idEducacion:number):void{

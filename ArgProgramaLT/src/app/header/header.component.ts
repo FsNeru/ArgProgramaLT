@@ -11,7 +11,7 @@ import { HeaderService } from 'src/app/services/header.service';
 })
 export class HeaderComponent implements OnInit {
   public usuario : Usuario|undefined;
-  public editUsuario: Usuario|undefined;
+  public updateUsuario:Usuario | undefined;
 
   constructor(private headerService : HeaderService) {
 
@@ -31,6 +31,28 @@ export class HeaderComponent implements OnInit {
       }
     })
   }
+  public onClickUpdate(usuario:Usuario):void{
+    this.updateUsuario=usuario;
+    console.log("------------------On click update------------------")
+    console.log(this.updateUsuario)
+    console.log("---------------------------------------------------")
+  }
+
+  public onUpdateUsuario(usuario:Usuario):void{
+    this.updateUsuario=usuario;
+    console.log("------------------Metodo on Update------------------")
+    console.log(usuario)
+    console.log("--------------------------------------------------------------")
+    this.headerService.updateUser(usuario).subscribe({
+      next: (response: Usuario) =>{
+        this.getUser();
+      },
+      error:(error:HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    })
+  }
+
 
 
 }

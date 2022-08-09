@@ -1,9 +1,120 @@
 <div class="card">
   <h1>Habilidades</h1>
+  <div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSkillModal">Add</button>
+  </div>
   <div *ngFor="let skill of skills">
     <h5>{{skill.nombreSkill}}</h5>
     <div class="progress">
       <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" [ngStyle]="{'width': skill.valor + '%'}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{skill.valor}}%</div>
     </div>
+    <div class="col text-center">
+      <a
+        (click)="onClickUpdate(skill)"
+        href="#updateSkillModal"
+        class="btn btn-primary tooltips"
+        data-placement="top"
+        data-bs-toggle="modal"
+        data-original-title="Edit">
+        <i class="bi bi-pencil-square"></i>
+      </a>
+      <a
+        (click)="onClickDelete(skill)"
+        href="#deleteSkillModal"
+        class="btn btn-secondary tooltips"
+        data-placement="top"
+        data-bs-toggle="modal"
+        data-original-title="Delete">
+        <i class="bi bi-trash-fill"></i>
+      </a>
+    </div>
   </div>
 </div>
+<!------------------------------------------------ Modal Add skills ---------------------------------------------->
+<div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addSkillModalLabel">Añadir Skill</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddSkill(addForm)">
+          <div class="mb-3">
+            <label for="nombreSkill" class="col-form-label">Nombre Habilidad:</label>
+            <input type="text" ngModel class="form-control" id="nombreSkill" name="nombreSkill" placeholder="Nombre Skill" required/>
+          </div>
+          <div class="mb-3">
+            <label for="valor" class="col-form-label">Porcentaje de dominio de la habilidad:</label>
+            <input type="number" min="1" max="99" ngModel class="form-control"  id="valor" name="valor" placeholder="0 a 99 sin usar '%'" required/>
+          </div>
+        <div class="modal-footer">
+          <button [disabled]="addForm.invalid"  type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar Habilidad</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------ Fin Modal ---------------------------------------------->
+
+<!------------------------------------------------ Modal Update skills ---------------------------------------------->
+<div class="modal fade" id="updateSkillModal" tabindex="-1" aria-labelledby="updateSkillModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateSkillModalLabel">Editar Habilidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm">
+          <div class="mb-3">
+            <label for="idSkill" class="col-form-label">ID:</label>
+            <input type="text" ngModel="{{updateSkills?.idSkill}}" class="form-control" id="idSkill" name="idSkill" placeholder="idSkill" readonly/>
+          </div>
+          <div class="mb-3">
+            <label for="nombreSkill" class="col-form-label">Nombre Habilidad:</label>
+            <input type="text" ngModel="{{updateSkills?.nombreSkill}}" class="form-control" id="nombreSkill" name="nombreSkill" placeholder="Nombre Skill" required/>
+          </div>
+          <div class="mb-3">
+            <label for="valor" class="col-form-label">Porcentaje de dominio de la habilidad:</label>
+            <input type="number" min="1" max="99" ngModel="{{updateSkills?.valor}}" class="form-control"  id="valor" name="valor" placeholder="0 a 99 sin usar '%'" required/>
+          </div>
+          <div class="modal-footer">
+            <button (click)="onUpdateSkill(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------ Fin Modal ---------------------------------------------->
+
+<!-------------------------------------------- Modal Delete skills --------------------------------->
+<div class="modal fade" id="deleteSkillModal" tabindex="-1" aria-labelledby="deleteSkillModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateSkillModalLabel">Eliminar Habilidad "{{ deleteSkills?.nombreSkill }}"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: rgb(235, 0, 0)">Estás seguro que quieres borrar "{{ deleteSkills?.nombreSkill }}"?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No. Dejame revisar</button>
+          <button (click)="onDeleteSkill(deleteSkills!.idSkill)" class="btn btn-primary" data-bs-dismiss="modal">Si. Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------ Fin Modal ---------------------------------------------->
+
+<!---------------------------------- Notifificacion si no existen skills ----------------------------->
+<div *ngIf="skills?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">No hay Habilidades!</h4>
+    <p>No se encontró ninguna habilidad</p>
+  </div>
+</div>
+

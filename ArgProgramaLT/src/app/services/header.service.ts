@@ -14,7 +14,7 @@ export class HeaderService {
   constructor(private http: HttpClient) { }
 
   public getUser():Observable<Usuario>{
-    return this.http.get<Usuario>(`http://localhost:8080/usuario/id/1`);
+    return this.http.get<Usuario>(`${this.apiServerUrl}/usuario/id/1`);
   }
 
   public updateUser(usuario:Usuario):Observable<Usuario>{
