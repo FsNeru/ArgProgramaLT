@@ -1,36 +1,36 @@
-<div class="card" *ngIf="educaciones">
-  <h1>Educacion</h1>
-  <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEducacionModal">Add</button>
+<div class="contenedorPrincipal" *ngIf="educaciones">
+  <div class="contenedorTitulo">
+    <h1>Educacion</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEducacionModal">Agregar nueva</button>
   </div>
 
-  <div class="card my-2" id="educacion" *ngFor="let educacion of educaciones">
-    <div class="card-body">
-      <h3 class="card-title">{{educacion.tituloEstudio}}</h3>
-      <div class="card-text">
-        <p class="mb-2">{{educacion.institucionEstudio}}</p>
-        <p class="mb-2">Desde {{educacion.fechaInicio}} hasta {{educacion.fechaFin}}</p>
-      </div>
-      <div class="col text-center">
-        <a
+  <div  class="contenedorTarjeta" *ngFor="let educacion of educaciones">
+    <div class="contenedorTitulo">
+      <h3 class="">{{educacion.tituloEstudio}}</h3>
+      <div class="contenedorBotones">
+      <a
           (click)="onClickUpdate(educacion)"
           href="#updateEducacionModal"
-          class="btn btn-primary tooltips"
+          class="btn btn-success tooltips"
           data-placement="top"
           data-bs-toggle="modal"
           data-original-title="Edit">
           <i class="bi bi-pencil-square"></i>
-        </a>
-        <a
+      </a>
+      <a
           (click)="onClickDelete(educacion)"
           href="#deleteEducacionModal"
-          class="btn btn-secondary tooltips"
+          class="btn btn-danger tooltips"
           data-placement="top"
           data-bs-toggle="modal"
           data-original-title="Delete">
           <i class="bi bi-trash-fill"></i>
-        </a>
+      </a>
       </div>
+    </div>
+    <div id="descripcionTarjeta">
+      <p class="text">{{educacion.institucionEstudio}}</p>
+      <p class="text">Desde {{educacion.fechaInicio}} hasta {{educacion.fechaFin}}</p>
     </div>
   </div>
 </div>
@@ -47,19 +47,19 @@
         <form #addForm="ngForm" (ngSubmit)="onAddEducacion(addForm)">
           <div class="mb-3">
             <label for="tituloEstudio" class="col-form-label">Titulo:</label>
-            <input type="text" ngModel class="form-control" id="tituloEstudio" name="tituloEstudio" placeholder="Titulo" required/>
+            <input type="text" ngModel class="form-control"  name="tituloEstudio" placeholder="Titulo" required/>
           </div>
           <div class="mb-3">
             <label for="institucionEstudio" class="col-form-label">Institucion:</label>
-            <input type="text" ngModel class="form-control"  id="institucionEstudio" name="institucionEstudio" placeholder="Institucion" required/>
+            <input type="text" ngModel class="form-control"   name="institucionEstudio" placeholder="Institucion" required/>
           </div>
           <div class="mb-3">
             <label for="fechaInicio" class="col-form-label">Fecha Inicio:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Fecha Inicio" required/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control"  name="fechaInicio" placeholder="Fecha Inicio" required/>
           </div>
           <div class="mb-3">
             <label for="fechaFin" class="col-form-label">Fecha Fin:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control" id="fechaFin" name="fechaFin" required/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control"  name="fechaFin" required/>
           </div>
 
         <div class="modal-footer">
@@ -84,23 +84,23 @@
         <form #updateForm="ngForm">
           <div class="mb-3">
             <label for="idEducacion" class="col-form-label">ID:</label>
-            <input type="text" ngModel="{{updateEducaciones?.idEducacion}}" class="form-control" id="idEducacion" name="idEducacion" placeholder="idEducacion" readonly/>
+            <input type="text" ngModel="{{updateEducaciones?.idEducacion}}" class="form-control"  name="idEducacion" placeholder="idEducacion" readonly/>
           </div>
           <div class="mb-3">
             <label for="tituloEstudio" class="col-form-label">Titulo:</label>
-            <input type="text" ngModel="{{updateEducaciones?.tituloEstudio}}" class="form-control" id="tituloEstudio" name="tituloEstudio" placeholder="Titulo"/>
+            <input type="text" ngModel="{{updateEducaciones?.tituloEstudio}}" class="form-control"  name="tituloEstudio" placeholder="Titulo"/>
           </div>
           <div class="mb-3">
             <label for="institucionEstudio" class="col-form-label">Institucion:</label>
-            <input type="text" ngModel="{{updateEducaciones?.institucionEstudio}}" class="form-control"  id="institucionEstudio" name="institucionEstudio" placeholder="Institucion"/>
+            <input type="text" ngModel="{{updateEducaciones?.institucionEstudio}}" class="form-control"   name="institucionEstudio" placeholder="Institucion"/>
           </div>
           <div class="mb-3">
             <label for="fechaInicio" class="col-form-label">Fecha Inicio:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateEducaciones?.fechaInicio}}" class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Fecha Inicio"/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateEducaciones?.fechaInicio}}" class="form-control"  name="fechaInicio" placeholder="Fecha Inicio"/>
           </div>
           <div class="mb-3">
             <label for="fechaFin" class="col-form-label">Fecha Fin:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateEducaciones?.fechaFin}}" class="form-control" id="fechaFin" name="fechaFin"/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateEducaciones?.fechaFin}}" class="form-control"  name="fechaFin"/>
           </div>
           <div class="modal-footer">
             <button (click)="onUpdateEducacion(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>

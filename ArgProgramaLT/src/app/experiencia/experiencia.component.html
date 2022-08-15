@@ -1,36 +1,37 @@
-<div class="card">
-  <h1>Experiencia</h1>
-  <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienciaModal">Add</button>
+<div class="contenedorPrincipal" *ngIf="experiencias">
+  <div class="contenedorTitulo">
+    <h1>Experiencia</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienciaModal">Agregar nueva</button>
   </div>
-  <div class="card my-2" id="experiencia" *ngFor="let experiencia of experiencias">
-    <div class="card-body">
-      <h3 class="card-title">{{experiencia.puesto}}</h3>
-      <div class="card-text">
-        <p class="mb-2">{{experiencia.nombreEmpresa}}</p>
-        <p class="mb-2">{{experiencia.tipoEmpleo}}</p>
-        <p class="mb-2">{{experiencia.fechaInicio}} - {{experiencia.fechaFin}}</p>
-      </div>
-      <div class="col text-center">
-        <a
+
+  <div  class="contenedorTarjeta" *ngFor="let experiencia of experiencias">
+    <div class="contenedorTitulo">
+      <h3 class="">{{experiencia.nombreEmpresa}}</h3>
+      <div class="contenedorBotones">
+      <a
           (click)="onClickUpdate(experiencia)"
           href="#updateExperienciaModal"
-          class="btn btn-primary tooltips"
+          class="btn btn-success tooltips"
           data-placement="top"
           data-bs-toggle="modal"
           data-original-title="Edit">
           <i class="bi bi-pencil-square"></i>
-        </a>
-        <a
+      </a>
+      <a
           (click)="onClickDelete(experiencia)"
-          href="#deleteExperienciaModal"
-          class="btn btn-secondary tooltips"
+          href="#deleteExperiencianModal"
+          class="btn btn-danger tooltips"
           data-placement="top"
           data-bs-toggle="modal"
           data-original-title="Delete">
           <i class="bi bi-trash-fill"></i>
-        </a>
+      </a>
       </div>
+    </div>
+    <div id="descripcionTarjeta">
+      <p class="text">{{experiencia.puesto}}</p>
+      <p class="text">{{experiencia.tipoEmpleo}}</p>
+      <p class="text">Desde {{experiencia.fechaInicio}} hasta {{experiencia.fechaFin}}</p>
     </div>
   </div>
 </div>
@@ -46,23 +47,23 @@
         <form #addForm="ngForm" (ngSubmit)="onAddExperiencia(addForm)">
           <div class="mb-3">
             <label for="nombreEmpresa" class="col-form-label">Nombre Empresa:</label>
-            <input type="text" ngModel class="form-control" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre Empresa" required/>
+            <input type="text" ngModel class="form-control"  name="nombreEmpresa" placeholder="Nombre Empresa" required/>
           </div>
           <div class="mb-3">
             <label for="puesto" class="col-form-label">Puesto:</label>
-            <input type="text" ngModel class="form-control"  id="puesto" name="puesto" placeholder="Puesto" required/>
+            <input type="text" ngModel class="form-control"   name="puesto" placeholder="Puesto" required/>
           </div>
           <div class="mb-3">
             <label for="tipoEmpleo" class="col-form-label">Tipo Empleo</label>
-            <input type="text" ngModel class="form-control"  id="tipoEmpleo" name="tipoEmpleo" placeholder="Tipo Empleo" required/>
+            <input type="text" ngModel class="form-control"   name="tipoEmpleo" placeholder="Tipo Empleo" required/>
           </div>
           <div class="mb-3">
             <label for="fechaInicio" class="col-form-label">Fecha Inicio:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Fecha Inicio" required/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control"  name="fechaInicio" placeholder="Fecha Inicio" required/>
           </div>
           <div class="mb-3">
             <label for="fechaFin" class="col-form-label">Fecha Fin:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control" id="fechaFin" name="fechaFin" required/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control"  name="fechaFin" required/>
           </div>
           <div class="modal-footer">
           <button [disabled]="addForm.invalid"  type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar Educacion</button>
@@ -90,23 +91,23 @@
           </div>
           <div class="mb-3">
             <label for="nombreEmpresa" class="col-form-label">Nombre Empresa:</label>
-            <input type="text" ngModel="{{updateExperiencias?.nombreEmpresa}}" class="form-control"  id="nombreEmpresa" name="nombreEmpresa" placeholder="nombreEmpresa"/>
+            <input type="text" ngModel="{{updateExperiencias?.nombreEmpresa}}" class="form-control"   name="nombreEmpresa" placeholder="nombreEmpresa"/>
           </div>
           <div class="mb-3">
             <label for="puesto" class="col-form-label">Puesto:</label>
-            <input type="text" ngModel="{{updateExperiencias?.puesto}}" class="form-control"  id="puesto" name="puesto" placeholder="Puesto"/>
+            <input type="text" ngModel="{{updateExperiencias?.puesto}}" class="form-control"   name="puesto" placeholder="Puesto"/>
           </div>
           <div class="mb-3">
             <label for="tipoEmpleo" class="col-form-label">Tipo Empleo</label>
-            <input type="text" ngModel="{{updateExperiencias?.tipoEmpleo}}" class="form-control"  id="tipoEmpleo" name="tipoEmpleo" placeholder="Tipo Empleo"/>
+            <input type="text" ngModel="{{updateExperiencias?.tipoEmpleo}}" class="form-control"   name="tipoEmpleo" placeholder="Tipo Empleo"/>
           </div>
           <div class="mb-3">
             <label for="fechaInicio" class="col-form-label">Fecha Inicio:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateExperiencias?.fechaInicio}}" class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Fecha Inicio"/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateExperiencias?.fechaInicio}}" class="form-control"  name="fechaInicio" placeholder="Fecha Inicio"/>
           </div>
           <div class="mb-3">
             <label for="fechaFin" class="col-form-label">Fecha Fin:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateExperiencias?.fechaFin}}" class="form-control" id="fechaFin" name="fechaFin"/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel="{{updateExperiencias?.fechaFin}}" class="form-control"  name="fechaFin"/>
           </div>
           <div class="modal-footer">
             <button (click)="onUpdateExperiencia(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>

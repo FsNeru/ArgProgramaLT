@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Educacion } from '../models/educacion';
 import { EducacionService } from '../services/educacion.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,7 +15,11 @@ export class EducacionComponent implements OnInit {
   public updateEducaciones:Educacion | undefined;
   public deleteEducaciones:Educacion | undefined;
 
-  constructor(private educacionService:EducacionService) { }
+  constructor(
+    private educacionService:EducacionService,
+    private autenticacionService: AutenticacionService
+    ) {}
+    isloged = () => this.autenticacionService.loggedIn();
 
   ngOnInit(): void {
     this.getEducaciones();

@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { FooterComponent } from './footer/footer/footer.component';
 import { ExperienciaComponent } from './experiencia/experiencia.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { EducacionComponent } from './educacion/educacion.component';
 import { SkillComponent } from './skill/skill.component';
 import { ProyectoComponent } from './proyecto/proyecto.component';
+import { EducacionService } from './services/educacion.service';
+import { HeaderService } from './services/header.service';
+import { ExperienciaService } from './services/experiencia.service';
+import { SkillService } from './services/skill.service';
+import { ProyectoService } from './services/proyecto.service';
+import { AutenticacionService } from './services/autenticacion.service';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,6 @@ import { ProyectoComponent } from './proyecto/proyecto.component';
     NavbarComponent,
     FooterComponent,
     ExperienciaComponent,
-    LoginComponent,
     HomeComponent,
     HeaderComponent,
     EducacionComponent,
@@ -31,9 +36,18 @@ import { ProyectoComponent } from './proyecto/proyecto.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    EducacionService,
+    HeaderService,
+    ExperienciaService,
+    SkillService,
+    ProyectoService,
+    AutenticacionService,
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

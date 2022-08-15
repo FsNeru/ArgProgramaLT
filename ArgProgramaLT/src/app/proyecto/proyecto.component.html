@@ -1,35 +1,37 @@
-<div class="card">
-  <h1>Proyectos</h1>
-  <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProyectoModal">Add</button>
+<div class="contenedorPrincipal" *ngIf="proyectos">
+  <div class="contenedorTitulo">
+    <h1>Proyectos</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProyectoModal">Agregar nuevo</button>
   </div>
-  <div class="card my-2" id="proyectos" *ngFor="let proyecto of proyectos">
-    <div class="card-body">
-      <h3 class="card-title">{{proyecto.tituloProyecto}}</h3>
-      <div class="card-text">
-        <p class="mb-2">{{proyecto.descripcionProyecto}}</p>
-        <p class="mb-2">{{proyecto.urlProyecto}}</p>
-      </div>
-      <div class="col text-center">
-        <a
+
+  <div  class="contenedorTarjeta" *ngFor="let proyecto of proyectos">
+    <div class="contenedorTitulo">
+      <h3 class="">{{proyecto.tituloProyecto}}</h3>
+      <div class="contenedorBotones">
+      <a
           (click)="onClickUpdate(proyecto)"
           href="#updateProyectoModal"
-          class="btn btn-primary tooltips"
+          class="btn btn-success tooltips"
           data-placement="top"
           data-bs-toggle="modal"
           data-original-title="Edit">
           <i class="bi bi-pencil-square"></i>
-        </a>
-        <a
+      </a>
+      <a
           (click)="onClickDelete(proyecto)"
           href="#deleteProyectoModal"
-          class="btn btn-secondary tooltips"
+          class="btn btn-danger tooltips"
           data-placement="top"
           data-bs-toggle="modal"
           data-original-title="Delete">
           <i class="bi bi-trash-fill"></i>
-        </a>
+      </a>
       </div>
+    </div>
+    <div id="descripcionTarjeta" n>
+      <p class="text">{{proyecto.tituloProyecto}}</p>
+      <p class="text">{{proyecto.descripcionProyecto}}</p>
+      <a class="text" [href]="proyecto.urlProyecto" target="_blank">{{proyecto.urlProyecto}}</a>
     </div>
   </div>
 </div>
@@ -46,15 +48,15 @@
         <form #addForm="ngForm" (ngSubmit)="onAddProyecto(addForm)">
           <div class="mb-3">
             <label for="tituloProyecto" class="col-form-label">Titulo Proyecto:</label>
-            <input type="text" ngModel class="form-control" id="tituloProyecto" name="tituloProyecto" placeholder="Nombre del Proyecto" required/>
+            <input type="text" ngModel class="form-control"  name="tituloProyecto" placeholder="Nombre del Proyecto" required/>
           </div>
           <div class="mb-3">
             <label for="descripcionProyecto" class="col-form-label">Descripcion del proyecto:</label>
-            <input type="text" ngModel class="form-control"  id="descripcionProyecto" name="descripcionProyecto" placeholder="Descripcion" required/>
+            <input type="text" ngModel class="form-control"   name="descripcionProyecto" placeholder="Descripcion" required/>
           </div>
           <div class="mb-3">
             <label for="urlProyecto" class="col-form-label">Url Proyecto:</label>
-            <input type="text" ngModel class="form-control"  id="urlProyecto" name="urlProyecto" placeholder="Url a Repo/Web" required/>
+            <input type="text" ngModel class="form-control"   name="urlProyecto" placeholder="Url a Repo/Web" required/>
           </div>
         <div class="modal-footer">
           <button [disabled]="addForm.invalid"  type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar Proyecto</button>
@@ -82,15 +84,15 @@
           </div>
           <div class="mb-3">
             <label for="tituloProyecto" class="col-form-label">Titulo Proyecto:</label>
-            <input type="text" ngModel="{{updateProyectos?.tituloProyecto}}" class="form-control" id="tituloProyecto" name="tituloProyecto" placeholder="Titulo Proyecto" required/>
+            <input type="text" ngModel="{{updateProyectos?.tituloProyecto}}" class="form-control"  name="tituloProyecto" placeholder="Titulo Proyecto" required/>
           </div>
           <div class="mb-3">
             <label for="descripcionProyecto" class="col-form-label">Descripcion del proyecto:</label>
-            <input type="text" ngModel="{{updateProyectos?.descripcionProyecto}}" class="form-control"  id="descripcionProyecto" name="descripcionProyecto" placeholder="Descripcion" required/>
+            <input type="text" ngModel="{{updateProyectos?.descripcionProyecto}}" class="form-control"   name="descripcionProyecto" placeholder="Descripcion" required/>
           </div>
           <div class="mb-3">
             <label for="urlProyecto" class="col-form-label">Url Proyecto:</label>
-            <input type="text" ngModel="{{updateProyectos?.urlProyecto}}" class="form-control"  id="urlProyecto" name="urlProyecto" placeholder="Url a Git/Web" required/>
+            <input type="text" ngModel="{{updateProyectos?.urlProyecto}}" class="form-control"   name="urlProyecto" placeholder="Url a Git/Web" required/>
           </div>
           <div class="modal-footer">
             <button (click)="onUpdateProyecto(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>

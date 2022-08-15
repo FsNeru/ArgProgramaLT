@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../models/proyecto';
 import { ProyectoService } from '../services/proyecto.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,7 +15,11 @@ export class ProyectoComponent implements OnInit {
   public updateProyectos:Proyecto | undefined;
   public deleteProyectos:Proyecto | undefined;
 
-  constructor(private proyectoService:ProyectoService) { }
+  constructor(
+    private proyectoService:ProyectoService,
+    private autenticacionService: AutenticacionService
+    ) {}
+    isloged = () => this.autenticacionService.loggedIn();
 
   ngOnInit(): void {
     this.getProyectos();

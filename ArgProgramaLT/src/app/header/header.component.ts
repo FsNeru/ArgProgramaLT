@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario';
+import { Datos } from 'src/app/models/datos';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { HeaderService } from 'src/app/services/header.service';
 
 
@@ -10,42 +11,44 @@ import { HeaderService } from 'src/app/services/header.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public usuario : Usuario|undefined;
-  public updateUsuario:Usuario | undefined;
+  public datos : Datos|undefined;
+  public updateDatos:Datos | undefined;
 
-  constructor(private headerService : HeaderService) {
-
-  }
+  constructor(
+    private headerService: HeaderService,
+    private autenticacionService: AutenticacionService
+  ) {}
+  isloged = () => this.autenticacionService.loggedIn();
 
   ngOnInit(): void {
-    this.getUser();
+    this.getDatos();
   }
 
-  public getUser():void{
-    this.headerService.getUser().subscribe({
-      next: (response: Usuario) =>{
-        this.usuario=response;
+  public getDatos():void{
+    this.headerService.getDatos().subscribe({
+      next: (response: Datos) =>{
+        this.datos=response;
       },
       error:(error:HttpErrorResponse)=>{
         alert(error.message);
       }
     })
   }
-  public onClickUpdate(usuario:Usuario):void{
-    this.updateUsuario=usuario;
+  public onClickUpdate(datos:Datos):void{
+    this.updateDatos=datos;
     console.log("------------------On click update------------------")
-    console.log(this.updateUsuario)
+    console.log(this.updateDatos)
     console.log("---------------------------------------------------")
   }
 
-  public onUpdateUsuario(usuario:Usuario):void{
-    this.updateUsuario=usuario;
+  public onUpdateDatos(datos:Datos):void{
+    this.updateDatos=datos;
     console.log("------------------Metodo on Update------------------")
-    console.log(usuario)
-    console.log("--------------------------------------------------------------")
-    this.headerService.updateUser(usuario).subscribe({
-      next: (response: Usuario) =>{
-        this.getUser();
+    console.log(datos)
+    console.log("----------------------------------------------------")
+    this.headerService.updateDatos(datos).subscribe({
+      next: (response: Datos) =>{
+        this.getDatos();
       },
       error:(error:HttpErrorResponse)=>{
         alert(error.message);

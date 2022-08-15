@@ -1,74 +1,72 @@
-<div *ngIf="usuario">
+<div *ngIf="datos">
   <img id="banner" class="d-block" src="./assets/images/banner.jpg" alt="Lucas Tecera FullStack Web Developer"/>
 
-  <div id="info">
-    <div class="card flex-column" id="infoCard">
-      <img src={{usuario.urlFotoUsuario}} class="rounded-circle d-block" alt="Foto de Perfil" id="profilePic"/>
-        <div>
-          <h5>{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</h5>
-          <p id="profecion">{{usuario.profesionUsuario}}</p>
-          <p id="ubicacion">{{usuario.domicilioUsuario}}</p>
-        </div>
-        <div class="col text-center">
-          <a
-            (click)="onClickUpdate(usuario)"
-            href="#updateUsuarioModal"
-            class="btn btn-primary tooltips"
+  <div class="d-flex" id="infoContainer">
+    <div id="infoCard">
+      <a
+            id="botonEdit"
+            (click)="onClickUpdate(datos)"
+            href="#updateDatosModal"
+            class="tooltips"
             data-placement="top"
             data-bs-toggle="modal"
             data-original-title="Edit">
             <i class="bi bi-pencil-square"></i>
           </a>
+      <img src={{datos.urlFotoUsuario}} class="rounded-circle d-block" alt="Foto de Perfil" id="profilePic"/>
+        <div id="cardText">
+          <h4 class="text"> {{datos.nombreUsuario}} {{datos.apellidoUsuario}}</h4>
+          <p class="text">{{datos.profesionUsuario}}</p>
+          <p class="text">{{datos.domicilioUsuario}}</p>
         </div>
+
     </div>
-  </div>
-  <div class="card my-2" id="acercaDe">
-    <div class="card-body">
-      <h3 class="card-title">Acerca de mi</h3>
-      <p class="card-text">{{usuario.sobreMiUsuario}}</p>
+    <div id="acercaDe">
+        <h4 class="text">Acerca de mi</h4>
+        <p class="text">{{datos.sobreMiUsuario}}</p>
     </div>
   </div>
 </div>
 <!--------------------------------------- Modal Update Info Usuario ------------------------------------->
-<div class="modal fade" id="updateUsuarioModal" tabindex="-1" aria-labelledby="updateUsuarioModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateDatosModal" tabindex="-1" aria-labelledby="updateDatosModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateUsuarioModalLabel">Editar datos usuario</h5>
+        <h5 class="modal-title" id="updateDatosModalLabel">Editar datos</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form #updateForm="ngForm">
           <div class="mb-3">
             <label for="id" class="col-form-label">ID:</label>
-            <input type="text" ngModel="{{updateUsuario?.id}}" class="form-control" id="id" name="id" placeholder="idUsuario" readonly/>
+            <input type="text" ngModel="{{updateDatos?.id}}" class="form-control" id="id" name="id" placeholder="id" readonly/>
           </div>
           <div class="mb-3">
             <label for="nombreUsuario" class="col-form-label">Nombre:</label>
-            <input type="text" ngModel="{{updateUsuario?.nombreUsuario}}" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre"/>
+            <input type="text" ngModel="{{updateDatos?.nombreUsuario}}" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre"/>
           </div>
           <div class="mb-3">
             <label for="apellidoUsuario" class="col-form-label">Apellido:</label>
-            <input type="text" ngModel="{{updateUsuario?.apellidoUsuario}}" class="form-control"  id="apellidoUsuario" name="apellidoUsuario" placeholder="Apellido"/>
+            <input type="text" ngModel="{{updateDatos?.apellidoUsuario}}" class="form-control"  id="apellidoUsuario" name="apellidoUsuario" placeholder="Apellido"/>
           </div>
           <div class="mb-3">
             <label for="profesionUsuario" class="col-form-label">Profesion:</label>
-            <input type="text" ngModel="{{updateUsuario?.profesionUsuario}}" class="form-control"  id="profesionUsuario" name="profesionUsuario" placeholder="Profesion"/>
+            <input type="text" ngModel="{{updateDatos?.profesionUsuario}}" class="form-control"  id="profesionUsuario" name="profesionUsuario" placeholder="Profesion"/>
           </div>
           <div class="mb-3">
             <label for="domicilioUsuario" class="col-form-label">Domicilio:</label>
-            <input type="text" ngModel="{{updateUsuario?.domicilioUsuario}}" class="form-control"  id="domicilioUsuario" name="domicilioUsuario" placeholder="Domicilio"/>
+            <input type="text" ngModel="{{updateDatos?.domicilioUsuario}}" class="form-control"  id="domicilioUsuario" name="domicilioUsuario" placeholder="Domicilio"/>
           </div>
           <div class="mb-3">
             <label for="sobreMiUsuario" class="col-form-label">Acerca de mi:</label>
-            <input type="text" ngModel="{{updateUsuario?.sobreMiUsuario}}" class="form-control"  id="sobreMiUsuario" name="sobreMiUsuario" placeholder="Cuenta algo sobre ti"/>
+            <input type="text" ngModel="{{updateDatos?.sobreMiUsuario}}" class="form-control"  id="sobreMiUsuario" name="sobreMiUsuario" placeholder="Cuenta algo sobre ti"/>
           </div>
           <div class="mb-3">
             <label for="urlFotoUsuario" class="col-form-label">Url Foto Perfil:</label>
-            <input type="text" ngModel="{{updateUsuario?.urlFotoUsuario}}" class="form-control"  id="urlFotoUsuario" name="urlFotoUsuario" placeholder="Url Foto"/>
+            <input type="text" ngModel="{{updateDatos?.urlFotoUsuario}}" class="form-control"  id="urlFotoUsuario" name="urlFotoUsuario" placeholder="Url Foto"/>
           </div>
           <div class="modal-footer">
-            <button (click)="onUpdateUsuario(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+            <button (click)="onUpdateDatos(updateForm.value)"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
           </div>
         </form>
       </div>
