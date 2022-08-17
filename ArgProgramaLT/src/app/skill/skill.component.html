@@ -1,7 +1,7 @@
 <div class="contenedorPrincipal" *ngIf="skills">
   <div class="contenedorTitulo">
-    <h1>Habilidades</h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSkillModal">Agregar nueva</button>
+    <h1 class="textoTitulo">Habilidades</h1>
+    <button *ngIf="isloged()" type="button" class="btn btn-primary addButton" data-bs-toggle="modal" data-bs-target="#addSkillModal">Agregar nueva</button>
   </div>
 
   <div  class="contenedorTarjeta" *ngFor="let skill of skills">
@@ -9,6 +9,7 @@
       <h3>{{skill.nombreSkill}}</h3>
       <div class="contenedorBotones">
         <a
+        *ngIf="isloged()"
             (click)="onClickUpdate(skill)"
             href="#updateSkillModal"
             class="btn btn-success tooltips"
@@ -18,6 +19,7 @@
             <i class="bi bi-pencil-square"></i>
         </a>
         <a
+        *ngIf="isloged()"
             (click)="onClickDelete(skill)"
             href="#deleteSkillModal"
             class="btn btn-danger tooltips"
@@ -25,11 +27,12 @@
             data-bs-toggle="modal"
             data-original-title="Delete">
             <i class="bi bi-trash-fill"></i>
+            <span style="cursor:pointer"></span>
         </a>
       </div>
     </div>
     <div class="progress" id="barraSkills">
-      <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" [ngStyle]="{'width': skill.valor + '%'}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{skill.valor}}%</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"  role="progressbar" [ngStyle]="{'width': skill.valor + '%'}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{skill.valor}}%</div>
     </div>
   </div>
 </div>

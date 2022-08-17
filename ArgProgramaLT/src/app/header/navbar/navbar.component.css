@@ -4,3 +4,13 @@
   background-color: aliceblue;
   color: black;
 }
+#login :hover{
+  cursor:pointer;
+}
+li a{
+  border-radius: 10px;
+  margin-left: 5px;
+}
+li :hover{
+  background-color: #1d3557;
+}

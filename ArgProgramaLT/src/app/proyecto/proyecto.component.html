@@ -1,7 +1,7 @@
 <div class="contenedorPrincipal" *ngIf="proyectos">
   <div class="contenedorTitulo">
-    <h1>Proyectos</h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProyectoModal">Agregar nuevo</button>
+    <h1 class="textoTitulo">Proyectos</h1>
+    <button *ngIf="isloged()" type="button" class="btn btn-primary addButton" data-bs-toggle="modal" data-bs-target="#addProyectoModal">Agregar nuevo</button>
   </div>
 
   <div  class="contenedorTarjeta" *ngFor="let proyecto of proyectos">
@@ -9,6 +9,7 @@
       <h3 class="">{{proyecto.tituloProyecto}}</h3>
       <div class="contenedorBotones">
       <a
+      *ngIf="isloged()"
           (click)="onClickUpdate(proyecto)"
           href="#updateProyectoModal"
           class="btn btn-success tooltips"
@@ -18,6 +19,7 @@
           <i class="bi bi-pencil-square"></i>
       </a>
       <a
+      *ngIf="isloged()"
           (click)="onClickDelete(proyecto)"
           href="#deleteProyectoModal"
           class="btn btn-danger tooltips"
@@ -29,7 +31,6 @@
       </div>
     </div>
     <div id="descripcionTarjeta" n>
-      <p class="text">{{proyecto.tituloProyecto}}</p>
       <p class="text">{{proyecto.descripcionProyecto}}</p>
       <a class="text" [href]="proyecto.urlProyecto" target="_blank">{{proyecto.urlProyecto}}</a>
     </div>

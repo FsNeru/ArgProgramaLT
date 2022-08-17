@@ -1,7 +1,7 @@
 <div class="contenedorPrincipal" *ngIf="educaciones">
   <div class="contenedorTitulo">
-    <h1>Educacion</h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEducacionModal">Agregar nueva</button>
+    <h1 class="textoTitulo">Educacion</h1>
+    <button *ngIf="isloged()" class="addButton" type="button" class="btn btn-primary addButton" data-bs-toggle="modal" data-bs-target="#addEducacionModal">Agregar nueva</button>
   </div>
 
   <div  class="contenedorTarjeta" *ngFor="let educacion of educaciones">
@@ -9,6 +9,7 @@
       <h3 class="">{{educacion.tituloEstudio}}</h3>
       <div class="contenedorBotones">
       <a
+      *ngIf="isloged()"
           (click)="onClickUpdate(educacion)"
           href="#updateEducacionModal"
           class="btn btn-success tooltips"
@@ -18,6 +19,7 @@
           <i class="bi bi-pencil-square"></i>
       </a>
       <a
+      *ngIf="isloged()"
           (click)="onClickDelete(educacion)"
           href="#deleteEducacionModal"
           class="btn btn-danger tooltips"
@@ -59,7 +61,7 @@
           </div>
           <div class="mb-3">
             <label for="fechaFin" class="col-form-label">Fecha Fin:</label>
-            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control"  name="fechaFin" required/>
+            <input type="date" min="1990-01-01" max="2030-12-31" ngModel class="form-control"  name="fechaFin" placeholder="Fecha final o estimativa" required/>
           </div>
 
         <div class="modal-footer">

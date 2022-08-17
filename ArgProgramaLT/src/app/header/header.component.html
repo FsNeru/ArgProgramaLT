@@ -1,24 +1,25 @@
-<div *ngIf="datos">
-  <img id="banner" class="d-block" src="./assets/images/banner.jpg" alt="Lucas Tecera FullStack Web Developer"/>
+<div *ngIf="datos" id="contenedorBanner">
+    <img id="banner" class="d-block" src="./assets/images/banner.jpg" alt="Lucas Tecera FullStack Web Developer"/>
 
-  <div class="d-flex" id="infoContainer">
-    <div id="infoCard">
-      <a
-            id="botonEdit"
-            (click)="onClickUpdate(datos)"
-            href="#updateDatosModal"
-            class="tooltips"
-            data-placement="top"
-            data-bs-toggle="modal"
-            data-original-title="Edit">
-            <i class="bi bi-pencil-square"></i>
-          </a>
-      <img src={{datos.urlFotoUsuario}} class="rounded-circle d-block" alt="Foto de Perfil" id="profilePic"/>
-        <div id="cardText">
-          <h4 class="text"> {{datos.nombreUsuario}} {{datos.apellidoUsuario}}</h4>
-          <p class="text">{{datos.profesionUsuario}}</p>
-          <p class="text">{{datos.domicilioUsuario}}</p>
-        </div>
+    <div class="d-flex" id="infoContainer">
+      <div id="infoCard">
+        <a
+        *ngIf="isloged()"
+              id="botonEdit"
+              (click)="onClickUpdate(datos)"
+              href="#updateDatosModal"
+              class="tooltips"
+              data-placement="top"
+              data-bs-toggle="modal"
+              data-original-title="Edit">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+        <img src={{datos.urlFotoUsuario}} class="rounded-circle d-block" alt="Foto de Perfil" id="profilePic"/>
+          <div id="cardText">
+            <h4 class="text"> {{datos.nombreUsuario}} {{datos.apellidoUsuario}}</h4>
+            <p class="text">{{datos.profesionUsuario}}</p>
+            <p class="text">{{datos.domicilioUsuario}}</p>
+          </div>
 
     </div>
     <div id="acercaDe">

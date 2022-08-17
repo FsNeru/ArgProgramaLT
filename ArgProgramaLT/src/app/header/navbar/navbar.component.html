@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
+<nav class="navbar navbar-expand-sm navbar-dark  sticky-top" [ngStyle]="{'background-color':'#1d3557'}">
   <div class="container-fluid">
     <a class="navbar-brand" href="">
       <img
@@ -43,15 +43,11 @@
             ><i class="bi bi-github"></i> Github</a
           >
         </li>
-        <li class="nav-item" *ngIf="!isloged()">
+        <li class="nav-item" id="login" *ngIf="!isloged()">
           <a
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
             class="nav-link text-light"
-            class="btn btn-primary tooltips"
-            data-placement="top"
-            data-toggle="tooltip"
-            data-original-title="Login"
           >
             <i class="bi bi-box-arrow-in-right"></i> Login</a
           >
@@ -61,10 +57,7 @@
             (click)="handleClear()"
             (click)="autenticacionService.logoutUser()"
             class="nav-link text-light"
-            class="btn btn-primary tooltips"
-            data-placement="top"
             data-toggle="tooltip"
-            data-original-title="Logout"
           >
             <i class="bi bi-box-arrow-in-left"></i> Logout</a
           >
@@ -119,7 +112,7 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="password" class="col-form-label">CContraseña:</label>
+            <label for="password" class="col-form-label">Contraseña:</label>
             <input
               [ngClass]="{
                 'is-invalid': Password?.errors && Password?.touched,

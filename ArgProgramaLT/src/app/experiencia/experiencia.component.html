@@ -1,7 +1,7 @@
 <div class="contenedorPrincipal" *ngIf="experiencias">
   <div class="contenedorTitulo">
-    <h1>Experiencia</h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienciaModal">Agregar nueva</button>
+    <h1 class="textoTitulo">Experiencia</h1>
+    <button *ngIf="isloged()"  type="button" class="btn btn-primary addButton" data-bs-toggle="modal" data-bs-target="#addExperienciaModal">Agregar nueva</button>
   </div>
 
   <div  class="contenedorTarjeta" *ngFor="let experiencia of experiencias">
@@ -9,6 +9,7 @@
       <h3 class="">{{experiencia.nombreEmpresa}}</h3>
       <div class="contenedorBotones">
       <a
+      *ngIf="isloged()"
           (click)="onClickUpdate(experiencia)"
           href="#updateExperienciaModal"
           class="btn btn-success tooltips"
@@ -18,6 +19,7 @@
           <i class="bi bi-pencil-square"></i>
       </a>
       <a
+      *ngIf="isloged()"
           (click)="onClickDelete(experiencia)"
           href="#deleteExperiencianModal"
           class="btn btn-danger tooltips"
